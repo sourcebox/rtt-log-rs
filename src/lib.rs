@@ -3,11 +3,11 @@
 
 use rtt_target::{rprintln, rtt_init_print};
 
-pub struct RttLogger {
+struct Logger {
     level_filter: log::LevelFilter,
 }
 
-impl log::Log for RttLogger {
+impl log::Log for Logger {
     /// Returns if logger is enabled
     fn enabled(&self, metadata: &log::Metadata) -> bool {
         metadata.level() <= self.level_filter
@@ -31,7 +31,7 @@ impl log::Log for RttLogger {
     }
 }
 
-static mut LOGGER: RttLogger = RttLogger {
+static mut LOGGER: Logger = Logger {
     level_filter: log::LevelFilter::Trace,
 };
 

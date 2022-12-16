@@ -45,7 +45,6 @@ pub fn init() {
 }
 
 /// Init the logger with a specific level
-#[allow(dead_code)]
 pub fn init_with_level(level_filter: log::LevelFilter) {
     unsafe {
         LOGGER.level_filter = level_filter;

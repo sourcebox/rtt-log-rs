@@ -1,20 +1,23 @@
 [package]
-authors = ["Oliver Rockstedt <info@sourcebox.de>"]
-categories = ["embedded", "hardware-support", "no-std", "development-tools"]
-description = "Log facade implementation for the Segger RTT protocol"
-edition = "2021"
-keywords = ["logging", "cortex-m", "risc-v"]
-license = "MIT"
-name = "rtt_log"
-repository = "https://github.com/sourcebox/rtt_log-rs"
-rust-version = "1.56"
+name = "rtt-log"
+description = "Log facade implementation for the Segger RTT protocol."
 version = "0.1.0"
+authors = ["Oliver Rockstedt <info@sourcebox.de>"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.56"
+repository = "https://github.com/sourcebox/rtt-log-rs"
+categories = ["embedded", "hardware-support", "no-std", "development-tools"]
+keywords = ["logging", "cortex-m", "risc-v", "rtt"]
 
 [dependencies]
 log = "0.4"
 rtt-target = {version = "0.3"}
 
 [features]
-cortex-m = ["rtt-target/cortex-m"]
 default = ["cortex-m"]
+cortex-m = ["rtt-target/cortex-m"]
 riscv = ["rtt-target/riscv"]
+
+[lib]
+doctest = false

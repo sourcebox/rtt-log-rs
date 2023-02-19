@@ -1,17 +1,17 @@
-# rtt_log
+# rtt-log
 
-This Rust crate provides a log facade implementation for the Segger RTT protocol supported by the J-Link, ST-Link and other debug probes.
+This Rust crate provides a log facade implementation for the Segger RTT protocol supported by the J-Link, ST-Link and other debug probes. It currently supports ARM Cortex-M and RISC-V targets via the [rtt-target](https://crates.io/crates/rtt-target) crate.
 
 ## Usage
 
 ```rust
-// Init the logger with maximum level (Trace)
+// Init the logger with maximum level (Trace).
 rtt_log::init();
 
-// Alternatively, init the logger with specific level
+// Alternatively, init the logger with specific level.
 rtt_log::init_with_level(log::LevelFilter::Debug);
 
-// Log something
+// Log something.
 log::debug!("Application started");
 ```
 

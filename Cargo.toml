@@ -15,7 +15,7 @@ log = "0.4"
 rtt-target = {version = "0.3"}
 
 [features]
-default = ["cortex-m"]
+default = []
 cortex-m = ["rtt-target/cortex-m"]
 riscv = ["rtt-target/riscv"]
 

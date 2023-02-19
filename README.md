@@ -4,6 +4,8 @@ This Rust crate provides a log facade implementation for the Segger RTT protocol
 
 ## Usage
 
+Either the `cortex-m` or the `riscv` platform feature must be enabled when defining this crate dependency.
+
 ```rust
 // Init the logger with maximum level (Trace).
 rtt_log::init();
@@ -19,7 +21,7 @@ log::debug!("Application started");
 
 ### cortex-m
 
-Support for ARM Cortex-M targets. Enabled by default.
+Support for ARM Cortex-M targets. Disabled by default.
 
 ### riscv
 

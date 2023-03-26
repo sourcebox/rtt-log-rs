@@ -1,7 +1,7 @@
 [package]
 name = "rtt-log"
 description = "Log facade implementation for the Segger RTT protocol."
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Oliver Rockstedt <info@sourcebox.de>"]
 license = "MIT"
 edition = "2021"
@@ -12,12 +12,10 @@ keywords = ["logging", "cortex-m", "risc-v", "rtt"]
 
 [dependencies]
 log = "0.4"
-rtt-target = {version = "0.3"}
+rtt-target = {version = "0.4"}
 
 [features]
 default = []
-cortex-m = ["rtt-target/cortex-m"]
-riscv = ["rtt-target/riscv"]
 
 [lib]
 doctest = false

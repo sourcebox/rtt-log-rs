@@ -1,9 +1,6 @@
 #![doc = include_str!("../README.md")]
 #![no_std]
 
-#[cfg(not(any(feature = "cortex-m", feature = "riscv")))]
-compile_error!("Either the `cortex-m` or `riscv` platform feature must be enabled.");
-
 use rtt_target::{rprintln, rtt_init_print};
 
 struct Logger {

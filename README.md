@@ -25,7 +25,7 @@ use rtt_log::rtt_target::rprintln;
 rprintln!("Hello, world!");
 ```
 
-Use a tool like [probe-run](https://github.com/knurling-rs/probe-run) on the host to print the messages.
+Use a tool like [probe-rs](https://github.com/probe-rs/probe-rs) on the host to print the messages.
 
 ## License
 

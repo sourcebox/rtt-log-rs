@@ -1,6 +1,8 @@
 #![doc = include_str!("../README.md")]
 #![no_std]
 
+pub use rtt_target;
+
 use rtt_target::{rprintln, rtt_init_print};
 
 struct Logger {

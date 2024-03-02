@@ -7,15 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Re-export `rtt-target`.
+
 ### Changed
 
-- Upgraded `rtt-target` dependency to `0.5`
+- Upgraded `rtt-target` dependency to `0.5`.
 
 ## [0.2.0] - 2023-03-26
 
 ### Changed
 
-- Upgraded `rtt-target` dependency to `0.4`
+- Upgraded `rtt-target` dependency to `0.4`.
 
 ### Removed
 

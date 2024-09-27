@@ -3,6 +3,7 @@
 
 pub use rtt_target;
 
+use once_cell::sync::OnceCell;
 use rtt_target::{rprintln, rtt_init_print};
 
 struct Logger {
@@ -33,23 +34,47 @@ impl log::Log for Logger {
     }
 }
 
-static mut LOGGER: Logger = Logger {
-    level_filter: log::LevelFilter::Trace,
-};
+static LOGGER: OnceCell<Logger> = OnceCell::new();
 
 /// Init the logger with maximum level (Trace).
 pub fn init() {
-    rtt_init_print!();
-    unsafe {
-        log::set_logger(&LOGGER).ok();
-        log::set_max_level(LOGGER.level_filter);
-    }
+    init_with_level(log::LevelFilter::Trace);
 }
 
 /// Init the logger with a specific level.
 pub fn init_with_level(level_filter: log::LevelFilter) {
-    unsafe {
-        LOGGER.level_filter = level_filter;
+    // Logger was already initialized.
+    if LOGGER.get().is_some() {
+        return;
     }
-    init();
+    let logger = LOGGER.get_or_init(|| Logger { level_filter });
+    rtt_init_print!();
+
+    // Use racy init if the feature is enabled or the target doesn't support atomic pointers.
+    #[cfg(any(not(target_has_atomic = "ptr"), feature = "racy_init"))]
+    unsafe {
+        init_racy(logger);
+    }
+
+    // Use the default init otherwise.
+    #[cfg(all(target_has_atomic = "ptr", not(feature = "racy_init")))]
+    init_default(logger);
+}
+
+#[cfg(all(target_has_atomic = "ptr", not(feature = "racy_init")))]
+fn init_default(logger: &'static Logger) {
+    log::set_logger(logger).ok();
+    log::set_max_level(logger.level_filter);
+}
+
+// # Safety
+//
+// This function will call the unsafe functions [log::set_logger_racy] and
+// [log::set_max_level_racy] if either the feature `racy_init` is enabled or the target doesn't
+// support atomic pointers. The [once_cell::OnceCell] should ensure that this is only called
+// once.
+#[cfg(any(not(target_has_atomic = "ptr"), feature = "racy_init"))]
+unsafe fn init_racy(logger: &'static Logger) {
+    log::set_logger_racy(logger).ok();
+    log::set_max_level_racy(logger.level_filter);
 }

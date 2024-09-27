@@ -14,8 +14,14 @@ keywords = ["logging", "cortex-m", "risc-v", "rtt"]
 log = "0.4.0"
 rtt-target = { version = "0.5.0" }
 
+[dependencies.once_cell]
+version = "1"
+default-features = false
+features = ["critical-section"]
+
 [features]
 default = []
+racy_init = []
 
 [lib]
 doctest = false

@@ -12,7 +12,7 @@ keywords = ["logging", "cortex-m", "risc-v", "rtt"]
 
 [dependencies]
 log = "0.4.0"
-rtt-target = { version = "0.6.0" }
+rtt-target = { version = "0.6.1" }
 
 [dependencies.once_cell]
 version = "1"
